@@ -1,0 +1,205 @@
+:root {
+  --bg-0: #0a1020;
+  --bg-1: #141f35;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-2: rgba(255, 255, 255, 0.72);
+  --primary: #ff6b35;
+  --primary-strong: #e94822;
+  --ok: #0a8f67;
+  --text: #1c2433;
+  --muted: #4f6078;
+  --shadow: 0 20px 40px rgba(14, 23, 42, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Noto Sans KR", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 15% 20%, #2f3f67 0%, transparent 40%),
+    radial-gradient(circle at 90% 15%, #6a2d6a 0%, transparent 35%),
+    linear-gradient(160deg, var(--bg-0), var(--bg-1));
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-shape {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.bg-shape-left {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(145deg, #ff8964, #ff5d5d);
+  left: -90px;
+  top: -70px;
+}
+
+.bg-shape-right {
+  width: 380px;
+  height: 380px;
+  background: linear-gradient(145deg, #8b94ff, #5ad4ff);
+  right: -130px;
+  bottom: -120px;
+}
+
+.container {
+  width: min(1040px, calc(100% - 32px));
+  margin: 28px auto 48px;
+  display: grid;
+  gap: 18px;
+}
+
+.hero,
+.result-panel,
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 22px;
+  background: var(--surface);
+}
+
+.hero-logo {
+  width: 100%;
+  border-radius: 14px;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Do Hyeon", sans-serif;
+  letter-spacing: 0.2px;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+.hero-copy p,
+.stamp {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.progress-wrap {
+  margin-top: 14px;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.progress-track {
+  height: 12px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 7px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff7f3f, #ffe067);
+  transition: width 0.35s ease;
+}
+
+.result-panel {
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: var(--surface-2);
+}
+
+#result-text {
+  margin: 8px 0 0;
+  font-weight: 700;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border-radius: 16px;
+  background: var(--surface);
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.card label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.count-input {
+  width: 100%;
+  border: 1px solid rgba(24, 32, 52, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.save-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  cursor: pointer;
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.card.completed {
+  outline: 2px solid rgba(10, 143, 103, 0.35);
+}
+
+.card.loser {
+  outline: 2px solid rgba(233, 72, 34, 0.45);
+  background: linear-gradient(180deg, rgba(255, 190, 160, 0.45), var(--surface));
+}
+
+@media (max-width: 680px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-logo {
+    max-width: 180px;
+  }
+}

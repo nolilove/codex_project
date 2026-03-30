@@ -1,0 +1,36 @@
+{
+  "bet": {
+    "name": "아이템 획득 내기 (태초서약)",
+    "baselineKst": "2026-03-30T12:00:00+09:00"
+  },
+  "participants": [
+    {
+      "id": "priest",
+      "name": "이단",
+      "count": 0,
+      "firstAcquiredAt": null,
+      "updatedAt": null
+    },
+    {
+      "id": "bm",
+      "name": "배메",
+      "count": 0,
+      "firstAcquiredAt": null,
+      "updatedAt": null
+    },
+    {
+      "id": "buffer",
+      "name": "앵콜없는도태버퍼",
+      "count": 0,
+      "firstAcquiredAt": null,
+      "updatedAt": null
+    },
+    {
+      "id": "hunter",
+      "name": "헌터",
+      "count": 0,
+      "firstAcquiredAt": null,
+      "updatedAt": null
+    }
+  ]
+}
