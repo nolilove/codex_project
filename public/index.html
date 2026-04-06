@@ -21,11 +21,11 @@
         <img class="hero-logo" src="/assets/logo.webp" alt="태초서약 내기 로고" />
         <div class="hero-copy">
           <h1>태초서약 내기 트래커</h1>
-          <p>기준 시각: 2026-03-30 12:00 (KST) 이후 최초 획득 1회 기준</p>
+          <p id="baseline-label">기준 시각: 2026-03-30 12:00 (KST) 이후 태초서약 선취득 기준</p>
           <div class="progress-wrap">
             <div class="progress-meta">
               <span>진행률</span>
-              <span id="progress-label">0 / 4</span>
+              <span id="progress-label">0 / 0</span>
             </div>
             <div class="progress-track">
               <div id="progress-bar" class="progress-bar"></div>
@@ -36,24 +36,75 @@
 
       <section class="result-panel">
         <h2>현재 판정</h2>
-        <p id="result-text">아직 4명 모두 확정되지 않았습니다.</p>
+        <p id="result-text">참가자를 추가하고 동기화하세요.</p>
+      </section>
+
+      <section class="search-panel">
+        <h2>참가자 검색/추가</h2>
+        <div class="search-grid">
+          <label>
+            검색 기준
+            <select id="mode-select">
+              <option value="server">서버</option>
+              <option value="adventure">모험단</option>
+            </select>
+          </label>
+          <label>
+            서버
+            <select id="server-select"></select>
+          </label>
+          <label class="keyword-wrap">
+            검색어
+            <input id="keyword-input" type="text" placeholder="캐릭터명 또는 모험단명" />
+          </label>
+          <button id="search-btn" class="save-btn" type="button">검색</button>
+        </div>
+        <p class="stamp">
+          모험단 검색은 공식 API 특성상 캐릭터 검색 결과를 기본정보로 보강해 모험단명을 필터링합니다.
+        </p>
+        <div id="search-results" class="cards"></div>
       </section>
 
       <section>
-        <h2>참가자 상태</h2>
+        <div class="section-header">
+          <h2>참가자 상태</h2>
+          <button id="refresh-all-btn" class="save-btn" type="button">전체 동기화</button>
+        </div>
         <div id="participants" class="cards"></div>
       </section>
     </main>
 
-    <template id="card-template">
+    <template id="search-card-template">
       <article class="card">
-        <h3 class="name"></h3>
-        <p class="stamp">최초 획득 시각: <span class="first-acquired">미기록</span></p>
-        <label>
-          획득 수량
-          <input class="count-input" type="number" min="0" step="1" value="0" />
-        </label>
-        <button class="save-btn" type="button">저장</button>
+        <div class="card-head">
+          <img class="char-avatar" alt="캐릭터 아바타" />
+          <div>
+            <h3 class="name"></h3>
+            <p class="stamp search-meta"></p>
+          </div>
+        </div>
+        <button class="save-btn add-btn" type="button">참가자 추가</button>
+      </article>
+    </template>
+
+    <template id="participant-card-template">
+      <article class="card">
+        <div class="card-head">
+          <img class="char-avatar" alt="참가자 아바타" />
+          <h3 class="name"></h3>
+        </div>
+        <p class="stamp adventure"></p>
+        <p class="stamp oath-count"></p>
+        <p class="stamp crystal-count"></p>
+        <p class="stamp first-oath"></p>
+        <details>
+          <summary>타임라인</summary>
+          <ul class="timeline-list"></ul>
+        </details>
+        <div class="row-actions">
+          <button class="save-btn sync-btn" type="button">동기화</button>
+          <button class="danger-btn remove-btn" type="button">삭제</button>
+        </div>
       </article>
     </template>
 

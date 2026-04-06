@@ -148,12 +148,32 @@ h2 {
   gap: 12px;
 }
 
+#participants.cards {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .card {
   border-radius: 16px;
   background: var(--surface);
   padding: 14px;
   display: grid;
   gap: 8px;
+}
+
+.card-head {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.char-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(28, 36, 51, 0.15);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .card label {
@@ -185,6 +205,74 @@ h2 {
   cursor: wait;
 }
 
+.danger-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #5a5d66, #2e3140);
+  cursor: pointer;
+}
+
+.danger-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.search-grid {
+  display: grid;
+  grid-template-columns: 160px 190px 1fr 110px;
+  gap: 10px;
+  align-items: end;
+}
+
+.search-grid label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.search-grid select,
+.search-grid input {
+  width: 100%;
+  border: 1px solid rgba(24, 32, 52, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.search-panel {
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: var(--surface-2);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.row-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.timeline-list {
+  margin: 6px 0 0;
+  padding-left: 16px;
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .card.completed {
   outline: 2px solid rgba(10, 143, 103, 0.35);
 }
@@ -201,5 +289,37 @@ h2 {
 
   .hero-logo {
     max-width: 180px;
+  }
+
+  .search-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  #participants.cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1440px) {
+  #participants.cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1200px) {
+  #participants.cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  #participants.cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

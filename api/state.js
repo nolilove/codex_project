@@ -1,4 +1,5 @@
 const { calculateResult, getOrInitState, log } = require("../lib/bet-state");
+const { SERVER_LABELS } = require("../lib/neople");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {
@@ -8,14 +9,18 @@ module.exports = async function handler(req, res) {
 
   try {
     const state = await getOrInitState();
-    res.status(200).json(calculateResult(state));
+    log("info", "state_loaded");
+    res.status(200).json({
+      ...calculateResult(state),
+      meta: {
+        baselineKst: state.bet.baselineKst,
+        servers: SERVER_LABELS,
+      },
+    });
   } catch (error) {
     log("error", "state_api_failed", { error: error.message, code: error.code });
-    if (error.code === "KV_ENV_MISSING") {
-      res.status(500).json({
-        error: "KV environment variables are missing",
-        required: ["KV_REST_API_URL", "KV_REST_API_TOKEN"],
-      });
+    if (error.code === "BLOB_ENV_MISSING") {
+      res.status(500).json({ error: "BLOB_READ_WRITE_TOKEN is missing on server" });
       return;
     }
     res.status(500).json({ error: "Internal server error" });
